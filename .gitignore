@@ -1,0 +1,7 @@
+# ide 
+.idea
+.vscode
+
+#binaries
+*.exe
+*.zip
