@@ -1,12 +1,12 @@
-Import-Module -name ".\Get-FileNameWithDate"
-Import-Module -name ".\New-File.psm1"
+Import-Module -Name ".\Get-FileNameWithDate.psm1" -Verbose
+Import-Module -Name ".\New-File.psm1"
 
 Function Get-MozBackupConfigurationFile{Param($outputDirectory,$outputFileName,$configPath, $profile ="Default",$action ="backup",$application="Thunderbird", $configFileName ="mozbackup.mozprofile")
 
 Write-Host 'Creating backup config file'
 
-# $file = Get-FileNameWithDate -fileName $outputFileName -fileExtension '.pcv'
-# Write-Host $file
+$file = Get-FileNameWithDate -fileName $outputFileName -fileExtension '.pcv'
+Write-Host $file
 
 # $filePath = $outputDirectory + $file
 # Write-Host $filePath
@@ -20,11 +20,11 @@ Write-Host 'Creating backup config file'
 # password=
 # "@
 
- $configFile = New-File -path $configPath -fileName $configFileName
-#  $configFilePath = $configPath + $configFileName
+# $configFile = New-File -path $configPath -fileName $configFileName
+# $configFilePath = $configPath + $configFileName
 
 #  if (Test-Path -filePath $configFilePath) {
 #    Set-Content -Path $configFilePath -Value $mozillaBackupConfigurationFile
 #    return $configFile
 #  } 
-}
+# }
