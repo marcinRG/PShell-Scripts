@@ -1,13 +1,15 @@
-Import-Module ".\cmdlets\Test-Path.psm1"
-Import-Module ".\cmdlets\Get-PreviousDate.psm1"
-Import-Module ".\cmdlets\New-File.psm1"
+Import-Module -name ".\functionsAndCmdlets\Test-Path.psm1"
+Import-Module -name ".\functionsAndCmdlets\New-File.psm1"
+Import-Module -name ".\functionsAndCmdlets\Get-PreviousDate.psm1"
+
 
 Clear-Host
-$path = 'D:\'
+$path = 'D:\test\'
 $fileName = "costam.txt"
 Write-Host "Test if path: $($path) exist"
-Test-Path -filePath $path
-Write-Host "Creating new file" 
+$bool = Test-Path -filePath $path
+Write-Host $bool
+Write-Host "Creating new file: $($fileName) in the directory: $($path)" 
 if (New-File -path $path -fileName $fileName) {
     Write-Host "File was created"
 }
