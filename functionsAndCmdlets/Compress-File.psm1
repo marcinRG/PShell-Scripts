@@ -1,4 +1,3 @@
-Import-Module -Name './Test-Path.psm1'
 Function Compress-File { Param($filePath,$compressedPath)
     if (Test-Path($filePath)) {
       try {

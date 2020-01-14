@@ -1,18 +1,15 @@
-# Import-Module "..\cmdlets\Get-MozBackupConfigurationFile.psm1"
-Import-Module -Name "..\functionsAndCmdlets\Test-Path.psm1"
-Import-Module -Name "..\functionsAndCmdlets\Get-MozBackupConfigurationFile.psm1"
+Import-Module -Name "..\functionsAndCmdlets\Get-FileNameWithDate.psm1" -Verbose
+Import-Module -Name "..\functionsAndCmdlets\New-File.psm1" -Verbose
+Import-Module -Name "..\functionsAndCmdlets\Test-Path.psm1" -Verbose
+Import-Module -Name "..\functionsAndCmdlets\Get-MozBackupConfigurationFile.psm1" -Verbose
 
-$configPath = "..\backups"
+$configPath = "..\settings\"
 $mozbackupFile = "mozbackup.mozprofile"
 
 Clear-Host
 Write-Host "Mozilla Thunderbird Backup"
-Write-Host $configPath
-Write-Host $mozbackupFile
-Write-Host "Test if path: $($configPath) exist"
-$bool = Test-Path -filePath $configPath
-Write-Host $bool
 $file = Get-MozBackupConfigurationFile -outputDirectory "D:\backup_poczta\" -outputFileName "thunderbird_backup"  -configPath $configPath -configFileName $mozbackupFile
+Write-Host $file
 
-#$file = $configPath + $mozbackupFile
-#mozbackup $file
+$filePath = $configPath + $mozbackupFile
+#mozbackup $filePath

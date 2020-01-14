@@ -1,12 +1,14 @@
-# Import-Module -name ".\functionsAndCmdlets\Test-Path.psm1"
-# Import-Module -name ".\functionsAndCmdlets\New-File.psm1"
-# Import-Module -name ".\functionsAndCmdlets\Get-PreviousDate.psm1"
+Import-Module -Name ".\functionsAndCmdlets\Get-FileNameWithDate.psm1" -Verbose
+Import-Module -Name ".\functionsAndCmdlets\New-File.psm1" -Verbose
+Import-Module -Name ".\functionsAndCmdlets\Test-Path.psm1" -Verbose
 Import-Module -Name ".\functionsAndCmdlets\Get-MozBackupConfigurationFile.psm1" -Verbose
 
 $file = 'costam'
 $ext = '.txt'
-
-
+$configPath = "D:\test\"
+$mozbackupFile = 'moz.backup'
+$file = Get-MozBackupConfigurationFile -outputDirectory "D:\backup_poczta\" -outputFileName "thunderbird_backup"  -configPath $configPath -configFileName $mozbackupFile
+# $file = Get-MozBackupConfigurationFile -outputDirectory "D:\backup_poczta\" -outputFileName "thunderbird_backup"  -configPath $configPath -configFileName $mozbackupFile
 
 # Clear-Host
 # $path = 'D:\test\'
