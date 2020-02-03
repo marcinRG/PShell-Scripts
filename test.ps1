@@ -9,16 +9,18 @@ Import-Module -Name ".\functionsAndCmdlets\Invoke-SQLQuery.psm1" -Verbose
 Import-Module -Name ".\functionsAndCmdlets\Compress-File.psm1" -Verbose
 
 Clear-Host
-$path = "D:\backup_dokumenty\"
+$path = "D:\test\obrazki"
 
 $date1MonthAgo = Get-PreviousDate -monthsAgo 1
 Write-Host $date4MonthsAgo
-$files = Get-FilesWithDate -directory $path -date $date1MonthAgo -older $true
-Write-Host "POCZATEK"
-#$files = Get-ChildItem $path
-for ($i=0; $i -lt $files.Count; $i++) {
-    Write-Host $files[$i].FullName
+Get-FilesWithDate -directory $path -date $date1MonthAgo -older $true | ForEach-Object {
+    Write-Host $_.Name
 }
-Write-Host "KONIEC"
+# Write-Host "POCZATEK"
+#$files = Get-ChildItem $path
+# for ($i=0; $i -lt $files.Count; $i++) {
+#     Write-Host $files[$i].FullName
+# }
+# Write-Host "KONIEC"
 
 #.\utils\youtube-dl.exe https://www.youtube.com/watch?v=Z6kNQEzQJpA
