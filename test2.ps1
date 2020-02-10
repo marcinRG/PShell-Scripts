@@ -1,6 +1,7 @@
 Clear-Host
 #$path = "D:\test\obrazki"
-$path = "D:\rozne"
+#$path = "D:\rozne"
+$path = "G:\Nowy folder\AGA-COMBO"
 
 $i=0
 $files = Get-ChildItem -path $path -Recurse -File | Sort-Object -Property Length, Extension, Name | 
@@ -40,4 +41,3 @@ $files | ForEach-Object {
 
 Write-Output "------------------------------------------"
 #count all files
-

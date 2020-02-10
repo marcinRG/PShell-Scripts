@@ -35,5 +35,4 @@ Function Get-Duplicates { Param($path)
         
     }
     Write-Output "------------------------------------------"
-    return $files
   }
