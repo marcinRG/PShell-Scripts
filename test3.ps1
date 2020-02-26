@@ -1,5 +1,5 @@
 # $path = "G:\Nowy folder"
-$path = "G:\Nowy folder\test"
+$path = "D:\rozne"
 $emptyArray = @()
 
 $files = Get-ChildItem -path $path -Recurse -File | Sort-Object -Property Length, Extension, Name | 
@@ -12,9 +12,7 @@ $allFilesCount = $files.Count
 $duplicates = @()
 $count = 0
 $files | ForEach-Object {
-    If ($allFilesCount -gt 500) {
-        Write-Progress -Activity "Searching from duplicates..." -Status "$($count) of $($allFilesCount) files complete" -PercentComplete "$([math]::Round(100*($count/$allFilesCount)))";
-    }
+    Write-Progress -Activity "Searching from duplicates..." -Status "$($count) of $($allFilesCount) files complete" -PercentComplete "$([math]::Round(100*($count/$allFilesCount)))";
     $extension = $_.Extension
     $length = $_.Length
     $name = $_.Name

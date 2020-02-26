@@ -1,38 +1,30 @@
-Function Get-Duplicates { Param($path)
-    $i=0
+Function Get-Duplicates {
+    Param($path)
+
+    $emptyArray = @()
+
     $files = Get-ChildItem -path $path -Recurse -File | Sort-Object -Property Length, Extension, Name | 
     ForEach-Object {
-        $_ | Add-Member -membertype noteproperty -name CountValue -value $i -PassThru
+        $_ | Add-Member -membertype noteproperty -name CountValue -value $i -PassThru | Add-Member -membertype noteproperty -name Duplicates -value $emptyArray -PassThru
         $i = $i + 1
     } | Sort-Object -Property CountValue
-    
-    $numberOfFiles = $files | Measure-Object | Select-Object -expandProperty count
-    
-    $j=1
-    Write-Output "List all files with the same length and file type"
-    Write-Output "directory: $($path), number of files: $($numberOfFiles)"
-    Write-Output "------------------------------------------"
+
+    $allFilesCount = $files.Count
+    $duplicates = @()
+    $count = 0
     $files | ForEach-Object {
-        
+        Write-Progress -Activity "Searching from duplicates..." -Status "$($count) of $($allFilesCount) files complete" -PercentComplete "$([math]::Round(100*($count/$allFilesCount)))";
         $extension = $_.Extension
         $length = $_.Length
         $name = $_.Name
-        $count = $_.CountValue
-        $hasDuplicates = $false
-        $output = ("`n File: $($name) duplicates found: $($j) `n")
-        $files | Where-Object { ($_.CountValue -gt $count) -and ($_.Name -ne $name) -and 
-            ($_.Length -eq $length) -and ($_.Extension -eq $extension) 
-        } | ForEach-Object {
-           $hasDuplicates = $true 
-           $output = ($output + "duplicate:" + $_.Name + "`n")
-        }
-    
-        if ($hasDuplicates) {
-            $output = $output + "______________________"
-            Write-Output $output
-            $j=$j+1
-        }
-        
+        $file = $_
+        $duplicates = $files | Where-Object { ($_.CountValue -gt $count) -and ($_.Name -ne $name) -and 
+            ($_.Length -eq $length) -and ($_.Extension -eq $extension) }
+        if ($duplicates.Count -gt 0) {
+            $file.Duplicates = $duplicates
+            $count = $file.CountValue + $duplicates.Count
+        }        
     }
-    Write-Output "------------------------------------------"
-  }
+    $output = $files | Where-Object { $_.Duplicates.Count -gt 0 }
+    return $output
+}

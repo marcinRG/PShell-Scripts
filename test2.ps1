@@ -1,7 +1,7 @@
 Clear-Host
 #$path = "D:\test\obrazki"
 #$path = "D:\rozne"
-$path = "G:\Nowy folder\AGA-COMBO"
+$path = "D:\rozne\"
 
 $i=0
 $files = Get-ChildItem -path $path -Recurse -File | Sort-Object -Property Length, Extension, Name | 
