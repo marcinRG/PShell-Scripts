@@ -5,7 +5,7 @@ Import-Module -Name "..\functionsAndCmdlets\Get-MozBackupConfigurationFile.psm1"
 
 $configPath = "..\settings\"
 $mozbackupFile = "mozbackup.mozprofile"
-$outputDir = "D:\backup_poczta\"
+$outputDir = "F:\backup_poczta_2\"
 
 Clear-Host
 Write-Host "Mozilla Thunderbird Backup"

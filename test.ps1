@@ -1,26 +1,19 @@
-Import-Module -Name ".\functionsAndCmdlets\Get-FileNameWithDate.psm1" -Verbose
-Import-Module -Name ".\functionsAndCmdlets\New-File.psm1" -Verbose
-Import-Module -Name ".\functionsAndCmdlets\Test-Path.psm1" -Verbose
-Import-Module -Name ".\functionsAndCmdlets\Get-MozBackupConfigurationFile.psm1" -Verbose
-Import-Module -Name ".\functionsAndCmdlets\Get-FilesWithDate.psm1" -Verbose
-Import-Module -Name ".\functionsAndCmdlets\Copy-BackupDirectory.psm1" -Verbose
-Import-Module -Name ".\functionsAndCmdlets\Get-PreviousDate.psm1" -Verbose
-Import-Module -Name ".\functionsAndCmdlets\Invoke-SQLQuery.psm1" -Verbose
-Import-Module -Name ".\functionsAndCmdlets\Compress-File.psm1" -Verbose
+Import-Module -Name ".\functionsAndCmdlets\Get-FilesWithDate.psm1" 
+Import-Module -Name ".\functionsAndCmdlets\Get-PreviousDate.psm1"
 
-Clear-Host
-$path = "D:\test\obrazki"
 
-$date1MonthAgo = Get-PreviousDate -monthsAgo 1
-Write-Host $date4MonthsAgo
-Get-FilesWithDate -directory $path -date $date1MonthAgo -older $true | ForEach-Object {
-    Write-Host $_.Name
+#Clear-Host
+$path = "F:\backup_poczta_2\"
+$months = 17
+Write-Host "USUWANIE PLIKOW STARSZYCH NIZ $months MIESIECY Z KATALOGU $path"
+Write-Host "POCZATEK"
+
+$dateMonthsAgo = Get-PreviousDate -monthsAgo $months
+Write-Host "----------------------------"
+Get-FilesWithDate -directory $path -date $dateMonthsAgo -older $true | ForEach-Object {
+    $fileName = $_.Name 
+    Write-Host "Usuwam plik: $fileName"
+    Remove-Item -Path $_.FullName -Force -Recurse -ErrorAction SilentlyContinue
 }
-# Write-Host "POCZATEK"
-#$files = Get-ChildItem $path
-# for ($i=0; $i -lt $files.Count; $i++) {
-#     Write-Host $files[$i].FullName
-# }
-# Write-Host "KONIEC"
-
-#.\utils\youtube-dl.exe https://www.youtube.com/watch?v=Z6kNQEzQJpA
+Write-Host "----------------------------"
+Write-Host "KONIEC"

@@ -1,3 +1,4 @@
 7Zip4Powershell - https://www.powershellgallery.com/packages/7Zip4Powershell/1.9.0, https://github.com/thoemmi/7Zip4Powershell
+CredentialManager - https://github.com/davotronic5000/PowerShell_Credential_Manager, https://www.powershellgallery.com/packages/CredentialManager
 youtube downloader: youtube-dl.exe - https://ytdl-org.github.io/youtube-dl/download.html
 mozbackup: MozBackup-1.5.1-EN - http://mozbackup.jasnapaka.com/download.php

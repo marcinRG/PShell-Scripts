@@ -2,5 +2,5 @@
 action=backup
 application=Thunderbird
 profile=Default
-output=D:\backup_poczta\thunderbird_backup_2020_01_14_08_37_.pcv
+output=F:\backup_poczta_2\thunderbird_backup_2020_10_29_02_30_.pcv
 password=
